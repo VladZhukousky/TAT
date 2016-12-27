@@ -27,6 +27,14 @@ public class MainPage extends Page {
     @FindBy(xpath = "/html/body/div[1]/main/div/div/div/div[1]/h2")
     private WebElement searchResult;
 
+
+    @FindBy(xpath = "/html/body/div[1]/header/div[1]/a")
+    private WebElement changeLangToBel;
+
+
+    @FindBy(xpath = "/html/body/div[1]/header/a[3]")
+    private WebElement sendAd;
+
     @Override
     public void openPage() {
         driver.navigate().to(BASE_URL);
@@ -47,8 +55,19 @@ public class MainPage extends Page {
         logger.info("Search performed");
     }
 
+    public void changeLang() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/div[1]/header/div[1]")));
+        changeLangToBel.click();
+        logger.info("Change Lang performed");
+    }
+
     public String getSearchResult() {
         return searchResult.getText();
+    }
+
+    public String getChangeLangResult() {
+        return sendAd.getText();
     }
 
 }

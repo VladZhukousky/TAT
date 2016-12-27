@@ -3,6 +3,7 @@ package com.epam.tat.step;
 import com.epam.tat.driver.Driver;
 import com.epam.tat.page.LoginPage;
 import com.epam.tat.page.MainPage;
+import com.epam.tat.page.SignUpPage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +13,7 @@ import org.openqa.selenium.WebDriver;
  */
 public class Step {
     private WebDriver driver;
+
 
     private final Logger logger = LogManager.getRootLogger();
 
@@ -41,6 +43,18 @@ public class Step {
         loginPage.exit();
     }
 
+    public void changeLang() {
+        MainPage mainPage = new MainPage(driver);
+        mainPage.openPage();
+        mainPage.changeLang();
+    }
+
+    public void signUp(String email,String password) {
+        SignUpPage signUpPage = new SignUpPage(driver);
+        signUpPage.openPage();
+        signUpPage.createAcc(email, password);
+    }
+
     public boolean isLoggedIn(String username) {
         LoginPage loginPage = new LoginPage(driver);
         return (loginPage.getLoggedInUserName().trim().toLowerCase().equals(username));
@@ -49,6 +63,17 @@ public class Step {
     public boolean isSearched(String result) {
         MainPage mainPage = new MainPage(driver);
         return (mainPage.getSearchResult().trim().toLowerCase().equals(result.trim().toLowerCase()));
+
+    }
+
+    public boolean isChangedLang(String result) {
+        MainPage mainPage = new MainPage(driver);
+        return (mainPage.getChangeLangResult().equals(result));
+
+    }
+    public boolean isWaitingToConfirm(String result) {
+        SignUpPage signUpPage = new SignUpPage(driver);
+        return (signUpPage.getWaitingToConfirm().equals(result));
 
     }
 }

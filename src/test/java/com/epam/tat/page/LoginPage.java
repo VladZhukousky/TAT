@@ -15,8 +15,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class LoginPage extends Page {
 
-    private final Logger logger = LogManager.getRootLogger();
-    private final String BASE_URL = "https://www.kufar.by/account/login";
+    private static final Logger logger = LogManager.getRootLogger();
+    private static final String BASE_URL = "https://www.kufar.by/account/login";
 
     public LoginPage(WebDriver driver) {
         super(driver);
